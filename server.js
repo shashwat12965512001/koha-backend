@@ -10,7 +10,12 @@ dotenv.config();
 
 const startServer = async () => {
     try {
-        await mongoose.connect(process.env.MONGODB_URI);
+        const dbUri = process.env.MONGODB_URI;
+        if (!dbUri) {
+            console.error("❌ MongoDB URI is not defined");
+            process.exit(1);
+        }
+        await mongoose.connect(dbUri);
         console.log("✅ MongoDB Connected");
 
         const app = express();
