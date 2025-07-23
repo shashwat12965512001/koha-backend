@@ -5,6 +5,8 @@ import mongoose from "mongoose";
 import useragent from "express-useragent";
 
 import authRoutes from "./routes/auth.js";
+import acquisitionRoutes from './routes/acquisitions.js';
+import serialRoutes from './routes/serials.js';
 
 dotenv.config();
 
@@ -30,6 +32,8 @@ const startServer = async () => {
         app.use(useragent.express());
 
         app.use("/api/auth", authRoutes);
+        app.use('/api/acquisitions', acquisitionRoutes);
+        app.use('/api/serials', serialRoutes);
 
         app.get("/cors-check", (req, res) => {
             res.setHeader("Access-Control-Allow-Origin", "*");
