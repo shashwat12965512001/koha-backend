@@ -61,4 +61,16 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.delete('/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        await Acquisition.findByIdAndDelete(id);
+        res.status(200).json({ message: "Deleted successfully" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Failed to delete" });
+    }
+});
+
+
 export default router;
