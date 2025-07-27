@@ -10,6 +10,7 @@ import serialRoutes from './routes/serials.js';
 import inventoryRoutes from './routes/inventory.js';
 import RoleRoutes from './routes/role.js';
 import PermissionRoutes from './routes/permissions.js';
+import PatronsRoutes from './routes/patron.js';
 
 dotenv.config();
 
@@ -27,7 +28,7 @@ const startServer = async () => {
 
         app.use(cors({
             origin: "*",
-            methods: ["GET", "POST", "PUT", "DELETE"],
+            methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
             allowedHeaders: ["Content-Type", "Authorization"]
         }));
 
@@ -40,6 +41,7 @@ const startServer = async () => {
         app.use('/api/inventory', inventoryRoutes);
         app.use('/api/role', RoleRoutes);
         app.use('/api/permission', PermissionRoutes);
+        app.use('/api/patrons', PatronsRoutes);
 
         app.get("/cors-check", (req, res) => {
             res.setHeader("Access-Control-Allow-Origin", "*");
