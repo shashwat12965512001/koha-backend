@@ -11,6 +11,7 @@ import inventoryRoutes from './routes/inventory.js';
 import RoleRoutes from './routes/role.js';
 import PermissionRoutes from './routes/permissions.js';
 import PatronsRoutes from './routes/patron.js';
+import SettingsRoutes from './routes/settings.js';
 
 dotenv.config();
 
@@ -42,6 +43,7 @@ const startServer = async () => {
         app.use('/api/role', RoleRoutes);
         app.use('/api/permission', PermissionRoutes);
         app.use('/api/patrons', PatronsRoutes);
+        app.use('/api/settings', SettingsRoutes);
 
         app.get("/cors-check", (req, res) => {
             res.setHeader("Access-Control-Allow-Origin", "*");
