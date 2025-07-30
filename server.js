@@ -12,6 +12,7 @@ import RoleRoutes from './routes/role.js';
 import PermissionRoutes from './routes/permissions.js';
 import PatronsRoutes from './routes/patron.js';
 import SettingsRoutes from './routes/settings.js';
+import IssueBookRoutes from './routes/issueBook.js';
 
 dotenv.config();
 
@@ -36,6 +37,8 @@ const startServer = async () => {
         app.use(express.json());
         app.use(useragent.express());
 
+        app.use('/uploads', express.static('uploads'));
+
         app.use("/api/auth", authRoutes);
         app.use('/api/acquisitions', acquisitionRoutes);
         app.use('/api/serials', serialRoutes);
@@ -44,6 +47,7 @@ const startServer = async () => {
         app.use('/api/permission', PermissionRoutes);
         app.use('/api/patrons', PatronsRoutes);
         app.use('/api/settings', SettingsRoutes);
+        app.use('/api/issue', IssueBookRoutes);
 
         app.get("/cors-check", (req, res) => {
             res.setHeader("Access-Control-Allow-Origin", "*");

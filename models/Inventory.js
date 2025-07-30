@@ -22,10 +22,12 @@ const inventorySchema = new mongoose.Schema({
     barcode: String,
     status: {
         type: String,
-        enum: ['Available', 'Issued', 'Lost', 'Damaged'],
+        enum: ['Available', 'Issued', 'Lost', 'Damaged', 'Reserved', 'Out of Stock'],
+        required: true,
         default: 'Available'
     },
     notes: String,
+    coverImageUrl: String,
 }, { timestamps: true });
 
 const Inventory = mongoose.model('Inventory', inventorySchema);
